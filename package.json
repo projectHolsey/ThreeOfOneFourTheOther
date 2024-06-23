@@ -1,0 +1,11 @@
+{
+  "name": "threeofonefourtheother",
+  "version": "1.0.0",
+  "description": "Making the card game, 3 of one, 4 of the other",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "M Holsey",
+  "license": "ISC"
+}
