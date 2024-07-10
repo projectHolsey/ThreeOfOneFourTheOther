@@ -6,9 +6,9 @@ They need both of the following things.
 3 || 4 of the numbers incrementing, but with the same suit
 
 E.G
-1,1,1,1, 3 of hearts, 4 of hearts, 5 of hearts
+1,1,1,1, 3 of Hearts, 4 of Hearts, 5 of Hearts
 
-ace of spaces, 2, 2, 2 of spades, 3 of spades, 4 of spades
+ace of spaces, 2, 2, 2 of Spades, 3 of Spades, 4 of Spades
 `
 
 const prompt = require("prompt-sync")({ sigint: true });
@@ -31,11 +31,6 @@ const deckAlias = {
     "12": "Queen",
     "13": "King"
 }
-
-
-
-
-
 
 
 function getRandomCard(max) { 
@@ -155,7 +150,7 @@ function checkDeckContainsSuits() {
     The collection of cards must contain 3 incrementing cards with the same suit
     E.G - 1,2,3 of spade
     OR
-    1,2,3,4 of hearts
+    1,2,3,4 of Hearts
 
     To do this - Need to find firstly if the deck has 3 cards that go up 
     ( 1,2,3 for example )
@@ -191,16 +186,16 @@ function checkDeckContainsSuits() {
         if (Number(splitItem[0]) + 1 == Number(currentHand[i + 1].split(":")[0])) {
             
             // Checking if the suits are the same..
-            if (splitItem[1] == currentHand[i + 1].split(":")[1]) {
+            if (splitItem[i] == currentHand[i + 1].split(":")[1]) {
                 
-                suitCounter[splitItem[1]] += 1; // Increment the current suit counter
+                suitCounter[splitItem[i]] += 1; // Increment the current suit counter
 
-                if (suitCounter[splitItem[1]] == 2) {
+                if (suitCounter[splitItem[i]] == 2) {
                     hasSuits = true;
                     // End condition - only time this can be met is here..
                     console.log(suitCounter);
                 }
-                if (suitCounter[splitItem[1]] == 3) {
+                if (suitCounter[splitItem[i]] == 3) {
                     isFour = true; 
                     // Just recording that this was a match of 4 
                     console.log(suitCounter);
@@ -209,7 +204,7 @@ function checkDeckContainsSuits() {
             } else { 
                 // If the suits don't match, reset all the other suit counters
                 for (var key in suitCounter) {
-                    if (key != splitItem[1]) {
+                    if (key != splitItem[i]) {
                         suitCounter[key] = 0; // reset suit counters for all but the current one
                     }
                 }
@@ -255,7 +250,7 @@ function main() {
 
 }
 
-main();
+// main();
 // test_Sort();
 
 
@@ -264,30 +259,45 @@ main();
 // All of these should pass. Need to make into tests....... :/ 
 const testConditionsSuits = [
     [
-        "1:spades",
-        "2:spades",
-        "3:spades",
-        "4:spades",
-        "5:spades",
-        "5:clubs",
-        "5:diamonds",
+        "1:Spades",
+        "2:Spades",
+        "3:Spades",
+        "4:Spades",
+        "5:Spades",
+        "5:Clubs",
+        "5:Diamonds",
     ],
     [
-        "1:spades",
-        "2:hearts",
-        "2:spades",
-        "2:diamonds",
-        "2:clubs",
-        "3:spades",
-        "5:diamonds",
+        "1:Spades",
+        "2:Hearts",
+        "2:Spades",
+        "2:Diamonds",
+        "3:Spades",
+        "4:Spades",
+        "5:Diamonds",
     ],
     [
-        "1:spades",
-        "2:diamonds",
-        "2:spades",
-        "3:diamonds",
-        "3:hearts",
-        "3:spades",
-        "3:clubs",
+        "1:Spades",
+        "2:Diamonds",
+        "2:Spades",
+        "3:Diamonds",
+        "3:Hearts",
+        "3:Spades",
+        "3:Clubs",
+    ],
+    [
+        "1:Spades",
+        "2:Hearts",
+        "2:Spades",
+        "2:Diamonds",
+        "3:Spades",
+        "3:Clubs",
+        "5:Diamonds",
     ]
 ]
+
+
+for (let i = 0 ; i <  testConditionsSuits.length; i++) {
+    currentHand = testConditionsSuits[i];
+    console.log(checkDeckContainsSuits());
+}
